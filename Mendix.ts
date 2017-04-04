@@ -2,7 +2,8 @@
 class MxMock implements mx.mx {
     appUrl: string;
     baseUrl: string;
-    modulePath: string
+    modulePath: string;
+    remoteUrl: string;
     addOnLoad(callback: Function): void { /* */ }
     login(username: string, password: string, onSuccess: Function, onError: Function): void { /* */ }
     logout(): void { /* */ }
@@ -67,6 +68,8 @@ class MxUiMock implements mx.ui {
         scope?: any
     ): void { /* */ }
     showLogin(messageCode: number): void { /* */ }
+    reload(callback?: () => void): void { /* */ }
+    translate(lib: string, errorName: string): string { return "translation" }
 }
 
 class MxContextMock implements mendix.lib.MxContext {
@@ -80,6 +83,7 @@ class MxContextMock implements mendix.lib.MxContext {
     setTrackId(guid: string): void { }
     setTrackEntity(entity: string): void { }
     setTrackObject(obj: mendix.lib.MxObject): void { }
+    setContext(trackEntity: string, guid: string): void { }
 }
 
 class MxObjectMock implements mendix.lib.MxObject {
@@ -128,4 +132,4 @@ export const mockMendix = {
         MxContext: MxContextMock.prototype, 
         MxObject:() => MxObjectMock.prototype
     }
-}
+};
